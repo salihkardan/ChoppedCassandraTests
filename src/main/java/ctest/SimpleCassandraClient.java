@@ -100,4 +100,12 @@ public class SimpleCassandraClient implements CassandraClient{
     public void setSession(Session session) {
         this.session = session;
     }
+
+    @Override
+    public int getNoOfRows() {
+        ResultSet results = session.execute("SELECT COUNT(*) " +
+                                            "FROM simplex.playlists ;");
+        int numberOfRows = results.all().size();
+        return numberOfRows;
+    }
 }

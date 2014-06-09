@@ -19,7 +19,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 @RunWith( JukitoRunner.class )
-@UseModules( MyModule.class )
+@UseModules( GuiceModule.class )
 @IterationChop( iterations = 2, threads = 1 )
 public class TestCassandra {
     private static final Logger LOG = LoggerFactory.getLogger(SimpleCassandraClient.class);
@@ -55,6 +55,14 @@ public class TestCassandra {
         }catch (Exception e){
             System.out.println("Keyspace already exists");
         }
+    }
+
+    @Test
+    public void checkNumberOfRecords(){
+        String connectionIP = getIPList(testCluster).get(0);
+        client.connect(connectionIP);
+        client.loadData();
+        assertEquals(2, client.getNoOfRows());
     }
 
     @Test

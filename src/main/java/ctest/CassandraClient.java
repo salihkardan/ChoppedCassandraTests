@@ -21,4 +21,6 @@ public interface CassandraClient {
     Session getSession();
 
     void setSession(Session session);
+
+    int getNoOfRows();
 }

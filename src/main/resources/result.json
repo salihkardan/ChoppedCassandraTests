@@ -1,0 +1,106 @@
+{
+    "testClass" : "ctest.TestCassandra",
+    "startTime" : 1402403889949,
+    "chopType" : "IterationChop",
+    "chopParameters" : {
+        "delay" : 0,
+        "iterations" : 2,
+        "saturate" : false,
+        "threads" : 1
+    },
+    "runResults" : [ {
+        "runTime" : 3313,
+        "failureCount" : 1,
+        "ignoreCount" : 0,
+        "runCount" : 4,
+        "failures" : [ {
+            "description" : {
+                "children" : [ ],
+                "testClass" : "ctest.TestCassandra",
+                "suite" : false,
+                "test" : true,
+                "empty" : false,
+                "annotations" : [ { } ],
+                "className" : "ctest.TestCassandra",
+                "methodName" : "testCluster",
+                "displayName" : "testCluster(ctest.TestCassandra)"
+            },
+            "testHeader" : "testCluster(ctest.TestCassandra)",
+            "trace" : "junit.framework.ComparisonFailure: expected:<Cassandra[Fail]> but was:<Cassandra[]>\n\tat junit.framework.Assert.assertEquals(Assert.java:100)\n\tat junit.framework.Assert.assertEquals(Assert.java:107)\n\tat junit.framework.TestCase.assertEquals(TestCase.java:269)\n\tat ctest.TestCassandra.testCluster(TestCassandra.java:66)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:606)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.jukito.InjectedStatement.evaluate(InjectedStatement.java:75)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.jukito.JukitoRunner.run(JukitoRunner.java:166)\n\tat org.junit.runners.Suite.runChild(Suite.java:127)\n\tat org.junit.runners.Suite.runChild(Suite.java:26)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:117)\n\tat org.apache.usergrid.chop.runner.drivers.Tracker.execute(Tracker.java:93)\n\tat org.apache.usergrid.chop.runner.drivers.IterationDriver$2.run(IterationDriver.java:77)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:262)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)\n\tat java.lang.Thread.run(Thread.java:745)\n",
+            "message" : "expected:<Cassandra[Fail]> but was:<Cassandra[]>",
+            "exception" : {
+                "cause" : null,
+                "stackTrace" : [ {
+                    "methodName" : "assertEquals",
+                    "fileName" : "Assert.java",
+                    "lineNumber" : 100,
+                    "className" : "junit.framework.Assert",
+                    "nativeMethod" : false
+                }, {
+                    "methodName" : "run",
+                    "fileName" : "Thread.java",
+                    "lineNumber" : 745,
+                    "className" : "java.lang.Thread",
+                    "nativeMethod" : false
+                } ],
+                "expected" : "CassandraFail",
+                "actual" : "Cassandra",
+                "message" : "expected:<Cassandra[Fail]> but was:<Cassandra[]>",
+                "localizedMessage" : "expected:<Cassandra[Fail]> but was:<Cassandra[]>",
+                "suppressed" : [ ]
+            }
+        } ]
+    }, {
+        "runTime" : 2773,
+        "failureCount" : 1,
+        "ignoreCount" : 0,
+        "runCount" : 4,
+        "failures" : [ {
+            "description" : {
+                "children" : [ ],
+                "testClass" : "ctest.TestCassandra",
+                "suite" : false,
+                "test" : true,
+                "empty" : false,
+                "annotations" : [ { } ],
+                "className" : "ctest.TestCassandra",
+                "methodName" : "testCluster",
+                "displayName" : "testCluster(ctest.TestCassandra)"
+            },
+            "testHeader" : "testCluster(ctest.TestCassandra)",
+            "trace" : "junit.framework.ComparisonFailure: expected:<Cassandra[Fail]> but was:<Cassandra[]>\n\tat junit.framework.Assert.assertEquals(Assert.java:100)\n\tat junit.framework.Assert.assertEquals(Assert.java:107)\n\tat junit.framework.TestCase.assertEquals(TestCase.java:269)\n\tat ctest.TestCassandra.testCluster(TestCassandra.java:66)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:606)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)\n\tat org.jukito.InjectedStatement.evaluate(InjectedStatement.java:75)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.jukito.JukitoRunner.run(JukitoRunner.java:166)\n\tat org.junit.runners.Suite.runChild(Suite.java:127)\n\tat org.junit.runners.Suite.runChild(Suite.java:26)\n\tat org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)\n\tat org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:309)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:160)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:138)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:117)\n\tat org.apache.usergrid.chop.runner.drivers.Tracker.execute(Tracker.java:93)\n\tat org.apache.usergrid.chop.runner.drivers.IterationDriver$2.run(IterationDriver.java:77)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:262)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)\n\tat java.lang.Thread.run(Thread.java:745)\n",
+            "message" : "expected:<Cassandra[Fail]> but was:<Cassandra[]>",
+            "exception" : {
+                "cause" : null,
+                "stackTrace" : [ {
+                    "methodName" : "assertEquals",
+                    "fileName" : "Assert.java",
+                    "lineNumber" : 100,
+                    "className" : "junit.framework.Assert",
+                    "nativeMethod" : false
+                }, {
+                    "methodName" : "run",
+                    "fileName" : "Thread.java",
+                    "lineNumber" : 745,
+                    "className" : "java.lang.Thread",
+                    "nativeMethod" : false
+                } ],
+                "expected" : "CassandraFail",
+                "actual" : "Cassandra",
+                "message" : "expected:<Cassandra[Fail]> but was:<Cassandra[]>",
+                "localizedMessage" : "expected:<Cassandra[Fail]> but was:<Cassandra[]>",
+                "suppressed" : [ ]
+            }
+        } ]
+    } ],
+    "stopTime" : 1402403896180,
+    "totalRunTime" : 6086,
+    "actualIterations" : 2,
+    "actualTime" : 6231,
+    "failures" : 2,
+    "ignores" : 0,
+    "totalTestsRun" : 8,
+    "maxTime" : 3313,
+    "minTime" : 2773,
+    "meanTime" : 3043
+}

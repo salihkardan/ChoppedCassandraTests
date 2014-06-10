@@ -63,7 +63,7 @@ public class TestCassandra {
             LOG.info( "Test cluster is null, skipping testCluster()..." );
             return;
         }
-        assertEquals( "Cassandra", testCluster.getName() );
+        assertEquals( "CassandraFail", testCluster.getName() );
         assertEquals( 1, testCluster.getSize() );
         assertEquals( 1, testCluster.getInstances().size() );
 

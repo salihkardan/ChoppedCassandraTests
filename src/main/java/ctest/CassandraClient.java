@@ -4,7 +4,7 @@ import com.datastax.driver.core.*;
 
 public interface CassandraClient {
 
-    void connect(String node);
+    void connect( String node );
 
     void close();
 
@@ -16,9 +16,9 @@ public interface CassandraClient {
 
     Cluster getCluster();
 
-    void setCluster(Cluster cluster);
+    void setCluster( Cluster cluster );
 
     Session getSession();
 
-    void setSession(Session session);
+    void setSession( Session session );
 }

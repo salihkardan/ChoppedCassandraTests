@@ -38,32 +38,40 @@ public class TestCassandra {
 
     @Test
     public void connectionTest(){
-        String connectionIP = getIPList(testCluster).get(0);
-        LOG.info("Testing connection with ip : {}", connectionIP);
+        if( testCluster == null ) {
+            LOG.info( "{} cluster is null, skipping connectionTest()...", testCluster.getName() );
+            return;
+        }
+        String connectionIP = getIPList( testCluster ).get( 0 );
+        LOG.info( "Testing connection with ip : {}", connectionIP );
         client.connect(connectionIP);
     }
 
     @Test
     public void checkSchema(){
-        String connectionIP = getIPList(testCluster).get(0);
-        client.connect(connectionIP);
+        if( testCluster == null ) {
+            LOG.info( "{} cluster is null, skipping checkSchema()...", testCluster.getName() );
+            return;
+        }
+        String connectionIP = getIPList( testCluster ).get( 0 );
+        client.connect( connectionIP );
         client.createSchema();
         Session session = client.getSession();
         try{
-            session.execute("CREATE KEYSPACE IF NOT EXISTS simplex WITH replication " +
-                    "= {'class':'SimpleStrategy', 'replication_factor':3};");
+            session.execute( "CREATE KEYSPACE IF NOT EXISTS simplex WITH replication " +
+                             "= {'class':'SimpleStrategy', 'replication_factor':3};" );
         }catch (Exception e){
-            System.out.println("Keyspace already exists");
+            System.out.println( "Keyspace already exists" );
         }
     }
 
     @Test
     public void testCluster() {
         if( testCluster == null ) {
-            LOG.info( "Test cluster is null, skipping testCluster()..." );
+            LOG.info( "{} cluster is null, skipping testCluster()...", testCluster.getName() );
             return;
         }
-        assertEquals( "CassandraFail", testCluster.getName() );
+        assertEquals( "Cassandra", testCluster.getName() );
         assertEquals( 1, testCluster.getSize() );
         assertEquals( 1, testCluster.getInstances().size() );
 
@@ -72,10 +80,10 @@ public class TestCassandra {
         }
     }
 
-    public ArrayList<String> getIPList(ICoordinatedCluster cluster){
+    public ArrayList<String> getIPList( ICoordinatedCluster cluster ){
         ArrayList<String> ipList = new ArrayList<String>();
         for ( Instance temp : cluster.getInstances() ) {
-            ipList.add(temp.getPrivateIpAddress());
+            ipList.add( temp.getPrivateIpAddress() );
         }
         return ipList;
     }

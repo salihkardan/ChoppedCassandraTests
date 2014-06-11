@@ -98,27 +98,12 @@
                 <groupId>org.apache.usergrid.chop</groupId>
                 <artifactId>chop-maven-plugin</artifactId>
                 <version>${chop.version}</version>
-                <executions>
-                    <execution>
-                        <id>chop-runner</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>runner</goal>
-                        </goals>
-                        <configuration>
-                            <username>username</username>
-                            <password>pass</password>
-                            <endpoint>https://localhost:8443/</endpoint>
-                            <testPackageBase>ctest</testPackageBase>
-                        </configuration>
-                    </execution>
-                </executions>
                 <configuration>
                     <username>${chop.coordinator.username}</username>
                     <password>${chop.coordinator.password}</password>
                     <endpoint>https://${chop.coordinator.url}:8443</endpoint>
                     <testPackageBase>ctest</testPackageBase>
-                    <runnerCount>1</runnerCount>
+                    <runnerCount>2</runnerCount>
                 </configuration>
             </plugin>
         </plugins>

@@ -16,9 +16,9 @@
 # specific language governing permissions and limitations
 # under the License.
 casVersion=2.0.7
-wget -P /opt https://archive.apache.org/dist/cassandra/$casVersion/apache-cassandra-$casVersion-bin.tar.gz
-tar -xpf /opt/apache-cassandra-$casVersion-bin.tar.gz -C /opt
-rm /opt/apache-cassandra-$casVersion-bin.tar.gz
+wget -P /opt https://archive.apache.org/dist/cassandra/${casVersion}/apache-cassandra-${casVersion}-bin.tar.gz
+tar -xpf /opt/apache-cassandra-${casVersion}-bin.tar.gz -C /opt
+rm /opt/apache-cassandra-${casVersion}-bin.tar.gz
 
 # export environmental variable
 envFile=/etc/profile.d/cassandra.sh
@@ -26,14 +26,14 @@ if [ ! -f "$envFile" ]; then
 	touch /etc/profile.d/cassandra.sh
 fi
 
-if ! grep -q "export" $envFile ; then
-	echo "export CASSANDRA_HOME=/opt/apache-cassandra-$casVersion/" >> $envFile
-	echo "export PATH=$PATH:/opt/apache-cassandra-$casVersion/bin"  >> $envFile
+if ! grep -q "export" ${envFile} ; then
+	echo "export CASSANDRA_HOME=/opt/apache-cassandra-$casVersion/" >> ${envFile}
+	echo "export PATH=$PATH:/opt/apache-cassandra-$casVersion/bin"  >> ${envFile}
 fi
-chmod +x $envFile
+chmod +x ${envFile}
 . /etc/profile
 
-file=/opt/apache-cassandra-$casVersion/conf/cassandra.yaml
+file=/opt/apache-cassandra-${casVersion}/conf/cassandra.yaml
 # set listen_address
 localIP=`hostname -I`
 sed -i "s/listen_address:.*/listen_address: $localIP/g" $file
@@ -51,4 +51,4 @@ do
 done
 sed -i "s/- seeds:.*/- seeds: \"$master\"/g" $file
 
-sudo sh /opt/apache-cassandra-$casVersion/bin/cassandra >> /dev/null
+sudo sh /opt/apache-cassandra-${casVersion}/bin/cassandra >> /dev/null

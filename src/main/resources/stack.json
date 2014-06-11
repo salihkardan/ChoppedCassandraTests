@@ -7,7 +7,7 @@
       "imageId" : "ami-56a0463e",
       "type" : "t1.micro",
       "keyName" : "salih",
-      "setupScripts" : [ "file://./test_script.sh" ],
+      "setupScripts" : [ "file://./install_cassandra.sh" ],
       "scriptEnvironment" : {
           "TEST_PARAM" : "Test Param Value"
       }

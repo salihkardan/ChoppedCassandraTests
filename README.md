@@ -1,11 +1,11 @@
-# What is Chop?
+### What is Chop?
 Judo Chop is a simple distributed performance testing framework which work with Maven. Just annotate your JUnit tests with **TimeChop** or **IterationChop** annotations telling Judo Chop how to chop it up. Judo Chop uses your own project's JUnit Test Cases as drivers to bombard your application, service, or server.
 
 You can reach the source code and more details here: [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o/chop).  
 
 
 
-# Chop Configuration
+### Chop Configuration
 There are some configurations that you need to do before start chopping. 
 
 1) [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml) : You need to conifugure **username**, **password** and **coordinator-url** parameter which will be same in the coordinator web interface. 
@@ -29,7 +29,7 @@ Inside your setup script, you will need ip address of AWS instances. You can rea
 while installation of cluster
 
 
-# Available Chop Commands
+### Available Chop Commands
 
 
 **1) mvn chop:runner**  --> creates runner.jar file which includes your tests cases and its dependencies
@@ -47,5 +47,5 @@ while installation of cluster
 **7) mvn chop:destroy** --> destroy stack and clusters which are set up on AWS. 
 
 
-# Go
+### Go
 

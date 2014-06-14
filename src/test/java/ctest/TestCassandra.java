@@ -24,6 +24,7 @@ import static junit.framework.TestCase.assertNotNull;
 public class TestCassandra {
     private static final Logger LOG = LoggerFactory.getLogger(SimpleCassandraClient.class);
 
+    // This should be same as defined inside stack.json under resources
     @ChopCluster( name = "Cassandra" )
     public static ICoordinatedCluster testCluster;
 

@@ -3,6 +3,21 @@ Judo Chop is a simple distributed performance testing framework which work with 
 
 You can reach the source code and more details here: [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o/chop).  
 
+###Setup
+
+[Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github. You can clone or fork the project from Github. To build chop, you need to run below command from parent directory of chop. 
+  
+    $ mvn clean install
+After buid completes, under webapp folder there will be jar file named **chop-webapp-2.0.0-SNAPSHOT-shaded.jar**. This is the jar that you will need to start chop coordinator. There is simple service script at [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. 
+Copy that script under /etc/init.d/ folder and export CHOP_HOME environmental variable where you put the jar file. Then invoke command below:
+
+    $ export CHOP_HOME=/opt/chop/
+    $ service chop-webapp start
+    
+After you start chop webapp, you check if it is working :
+
+    https://{chop.coordinator.url}:8443/VAADIN
+Default username and password is `user:pass`. The you need create your own user account and enter AWS credentials and deploy pem file that you downloaded during staring aws intances. 
 
 
 ### Chop Configuration

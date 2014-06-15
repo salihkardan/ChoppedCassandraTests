@@ -39,7 +39,7 @@ start)
                 [ -e `dirname "$PIDFILE"` ] || \
                         install -d -m755 `dirname $PIDFILE`
                 DAEMON="/usr/bin/java"
-                ARGS=" -jar -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 $CHOP_HOME/webapp/chop-webapp-2.0.0-SNAPSHOT-shaded.jar -e -d /var/lib/elasticsearch"
+                ARGS=" -jar $CHOP_HOME/webapp/chop-webapp-2.0.0-SNAPSHOT-shaded.jar -e -d /var/lib/elasticsearch"
 		start-stop-daemon --start --quiet --make-pidfile --pidfile "$PIDFILE" --background  --exec /bin/bash -- -c "exec ${DAEMON} ${ARGS} > ${LOGFILE} 2>&1"
 	;;
         esac

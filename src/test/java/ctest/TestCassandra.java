@@ -67,14 +67,6 @@ public class TestCassandra {
     }
 
     @Test
-    public void checkNumberOfRecords(){
-        String connectionIP = getIPList(testCluster).get(0);
-        client.connect(connectionIP);
-        client.loadData();
-        assertEquals(2, client.getNoOfRows());
-    }
-
-    @Test
     public void testCluster() {
         if( testCluster == null ) {
             LOG.info( "{} cluster is null, skipping testCluster()...", testCluster.getName() );

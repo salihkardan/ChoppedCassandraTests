@@ -110,7 +110,7 @@
                     <password>${chop.coordinator.password}</password>
                     <endpoint>https://${chop.coordinator.url}:8443</endpoint>
                     <testPackageBase>ctest</testPackageBase>
-                    <runnerCount>2</runnerCount>
+                    <runnerCount>1</runnerCount>
                 </configuration>
             </plugin>
         </plugins>

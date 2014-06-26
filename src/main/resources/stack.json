@@ -12,7 +12,7 @@
           "TEST_PARAM" : "Test Param Value"
       }
     },
-    "size" : 2
+    "size" : 1
   } ],
   "dataCenter" : "us-east-1a",
   "ipRuleSet" : {

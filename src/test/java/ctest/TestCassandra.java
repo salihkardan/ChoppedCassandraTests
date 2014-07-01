@@ -20,7 +20,7 @@ import static junit.framework.TestCase.assertNotNull;
 
 @RunWith( JukitoRunner.class )
 @UseModules( GuiceModule.class )
-@IterationChop( iterations = 2, threads = 1 )
+@IterationChop( iterations = 10, threads = 4 )
 public class TestCassandra {
     private static final Logger LOG = LoggerFactory.getLogger(SimpleCassandraClient.class);
 

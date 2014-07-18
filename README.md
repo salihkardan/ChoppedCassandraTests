@@ -42,9 +42,9 @@ You can clone or fork the project from Github. After you cloned code, you need t
   1. Upload and start chop webapp 
   
     Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
-
-      $ mvn wagon:upload-single
-      $ mvn wagon:sshexec
+    
+        $ mvn wagon:upload-single
+        $ mvn wagon:sshexec
 
 
 <a name="runnersetup"/>

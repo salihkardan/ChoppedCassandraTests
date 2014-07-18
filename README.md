@@ -69,15 +69,6 @@ Default username and password is `user:pass`. Then you need create your own user
 There are some configurations that you need to do before start chopping. 
 
 1. You should provide the following information inside maven's settings.xml file. Keep in mind that you need to set the same **username** and **password**  provided below on chop webapp user interface.
-
-      <servers>
-        <server>
-            <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
-            <username>ubuntu</username>
-            <privateKey>/path/to/file.pem</privateKey>
-        </server>
-      <servers>
-
     <profiles>
       <profile>
           <id>deploy-chop-webapp</id>
@@ -99,6 +90,14 @@ There are some configurations that you need to do before start chopping.
           </properties>
       </profile> 
     </profiles>
+    
+    <servers>
+        <server>
+            <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
+            <username>ubuntu</username>
+            <privateKey>/path/to/file.pem</privateKey>
+        </server>
+    <servers>
 
 2. [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml)
         

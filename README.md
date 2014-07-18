@@ -1,25 +1,28 @@
 ##### Table of Contents  
-[What is Chop?](#headers)  
-[Setup](#headers)  
-[How to Start Webapp](#headers)  
-[Chop Configuration](#headers)  
-[Available Chop Commands](#headers)  
-[How will you reach the cluster information defined in stack.json file](#headers)  
-[Go](#headers)
+[What is Chop?](#whatis)  
+[Setup](#setup)  
+[How to Start Webapp](#start)  
+[Chop Configuration](#config)  
+[Available Chop Commands](#commands)  
+[How will you reach the cluster information defined in stack.json file](#stack.json)  
+[Go](#go)
 
 
+<a name="whatis"/>
 ### What is Chop?
 Judo Chop is a simple distributed performance testing framework. Just annotate your JUnit tests with **TimeChop** or **IterationChop** annotations telling Judo Chop how to chop it up. Judo Chop uses your own project's JUnit Test Cases as drivers to bombard your application, service, or server.
 
 The source code and more details about Chop can be found here : [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o/chop).  
 
+<a name="setup"/>
 ###Setup
 
 [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
 You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
   
     $ mvn clean install
-    
+ 
+<a name="start"/>   
 ####How to Start Webapp
 1. Things to be done on the AWS Instance
   1. Install JDK
@@ -42,7 +45,7 @@ After you start chop webapp, you can check if chop-webapp is working :
     https://{chop.coordinator.url}:8443/VAADIN
 Default username and password is `user:pass`. Then you need create your own user account and enter AWS credentials and deploy pem file that you downloaded during starting aws intances. 
 
-
+<a name="config"/>
 ### Chop Configuration
 There are some configurations that you need to do before start chopping. 
 
@@ -121,6 +124,7 @@ Inside your setup script, you will need IP addresses of AWS instances. You can r
     {cluster-name}_PUBLIC_ADDRS
     {cluster-name}_PUBLIC_HOSTS 
 
+<a name="commands"/>
 ### Available Chop Commands
 Chop has a maven plugin which you can use while setting up clusters, starting tests etc.
 Here is a list of available commands: 
@@ -135,7 +139,7 @@ Here is a list of available commands:
     mvn chop:destroy --> destroy stack and clusters which are set up on AWS. 
     mvn chop:help    --> help
 
-
+<a name="stack.json"/>
 ### How will you reach the cluster information defined in stack.json file ?
 
 Cluster information will injected at runtime, so you can reach all properties (i.e. cluster name, number of nodes in cluster, instance IPs ) of your cluster while writing your tests.  All you need is to use `@ChopCluster( name = "" )` annotation. 
@@ -143,5 +147,6 @@ Cluster information will injected at runtime, so you can reach all properties (i
     @ChopCluster( name = "Cassandra" ) // this name should be same with the name you defined in stack.json file.
     public static ICoordinatedCluster casCluster;
 
+<a name="go"/>
 ### Go
 You need to use maven chop commands in order. First you need to create runner.jar file with **mvn chop:runner** command, then you need to deploy runner.jar file with **mvn chop:deploy** command. After deployment, invoke **mvn chop:setup** command to setup stack and clusters defined in stack.json file. Finally to start tests call **mvn chop:start** command. 

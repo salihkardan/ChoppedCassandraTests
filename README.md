@@ -100,7 +100,7 @@ There are some configurations that you need to do before start chopping.
       </profile> 
     </profiles>
 
-Note: You need to set the same **username** and **password**  provided here on chop webapp. 
+  Note: You need to set the same **username** and **password**  provided here on chop webapp. 
 
 2. [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml)
         

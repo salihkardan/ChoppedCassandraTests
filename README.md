@@ -67,6 +67,7 @@ Default username and password is `user:pass`. Then you need create your own user
 <a name="config"/>
 ### Chop Configuration
 There are some configurations that you need to do before start chopping. 
+
 1. You should provide the following information inside maven's settings.xml file.
 
     <servers>

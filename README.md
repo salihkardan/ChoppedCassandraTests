@@ -1,12 +1,13 @@
 ##### Table of Contents  
-[What is Chop?](#whatis)  
-[Setup](#setup)  
-[How to Start Webapp](#start)  
-[Chop Configuration](#config)  
-[Available Chop Commands](#commands)  
-[How will you reach the cluster information defined in stack.json file](#stack.json)  
-[Go](#go)
-
+- [What is Chop?](#whatis)
+- [How to Setup Chop](#setup)  
+  - [How to Setup Webapp Instance](#webappsetup)
+  - [How to Setup Runner Instance](#runnersetup)
+- [How to Start Webapp](#start)  
+- [Chop Configuration](#config)  
+- [Available Chop Commands](#commands)  
+- [How will you reach the cluster information defined in stack.json file](#stack.json)  
+- [Go](#go)
 
 <a name="whatis"/>
 ### What is Chop?
@@ -15,15 +16,11 @@ Judo Chop is a simple distributed performance testing framework. Just annotate y
 The source code and more details about Chop can be found here : [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o/chop).  
 
 <a name="setup"/>
-###Setup
+###How to Setup Chop
 
-[Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
-You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
-  
-    $ mvn clean install
- 
-<a name="start"/>   
-####How to Start Webapp
+
+<a name="webappsetup"/>
+####How to Setup Webapp Instance
 1. Things to be done on the AWS Instance
   1. Install JDK
 You should install your preferred JDK.
@@ -36,11 +33,23 @@ There is simple service script that can be found [here](https://github.com/salih
 
 2. Things to be done locally
   1. Upload and start chop webapp 
-Please refer Chop Configuration section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
+Please refer [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
     $ mvn wagon:upload-single
     $ mvn wagon:sshexec
 
-After you start chop webapp, you can check if chop-webapp is working :
+
+<a name="runnersetup"/>
+####How to Setup Runner Instance
+
+[Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
+You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
+  
+    $ mvn clean install
+ 
+<a name="start"/>   
+####How to Start Webapp
+
+If you have followed [setup](#webappsetup) section, then your webapp should be running and you can check it via following URL:
 
     https://{chop.coordinator.url}:8443/VAADIN
 Default username and password is `user:pass`. Then you need create your own user account and enter AWS credentials and deploy pem file that you downloaded during starting aws intances. 

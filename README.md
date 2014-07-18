@@ -6,7 +6,7 @@
 - [How to Start Webapp](#start)  
 - [Chop Configuration](#config)  
 - [Available Chop Commands](#commands)  
-- [How will you reach the cluster information defined in stack.json file](#stack.json)  
+- [How will you reach the cluster information defined in stack.json file?](#stack.json)  
 - [Go](#go)
 
 <a name="whatis"/>

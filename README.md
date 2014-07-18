@@ -67,8 +67,41 @@ Default username and password is `user:pass`. Then you need create your own user
 <a name="config"/>
 ### Chop Configuration
 There are some configurations that you need to do before start chopping. 
+1) You should provide the following information inside maven's settings.xml file.
 
-1) [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml) : You need to configure **username**, **password** and **chop.coordinator.url** parameters which will be same in the coordinator web interface. 
+    <servers>
+      <server>
+          <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
+          <username>ubuntu</username>
+          <privateKey>/path/to/file.pem</privateKey>
+      </server>
+    <servers>
+
+    <profiles>
+      <profile>
+          <id>deploy-chop-webapp</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <chop.coordinator.url>webapp.ip.address</chop.coordinator.url>
+          </properties>
+      </profile>
+      <profile>
+          <id>chop-runner</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <chop.coordinator.username>your.user</chop.coordinator.username>
+              <chop.coordinator.password>your.password</chop.coordinator.password>
+          </properties>
+      </profile> 
+    </profiles>
+
+Note: You need to set the same **username** and **password**  provided here on chop webapp. 
+
+2) [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml)
         
         <plugins>
             <plugin>
@@ -98,41 +131,9 @@ There are some configurations that you need to do before start chopping.
             </plugin>
         </plugins>
 
-Since you will not want to commit your user specific information such as username and password, you can put those information into settings.xml file of maven.
+3) [stack.json](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/stack.json) : This file contains stack and cluster configuration that will be setup with **mvn chop:setup** command.
 
-    <servers>
-      <server>
-          <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
-          <username>ubuntu</username>
-          <privateKey>/home/salih/salih.pem</privateKey>
-      </server>
-    <servers>
-
-    <profiles>
-      <profile>
-          <id>deploy-chop-webapp</id>
-          <activation>
-              <activeByDefault>true</activeByDefault>
-          </activation>
-          <properties>
-              <chop.coordinator.url>54.85.138.123</chop.coordinator.url>
-          </properties>
-      </profile>
-      <profile>
-          <id>chop-runner</id>
-          <activation>
-              <activeByDefault>true</activeByDefault>
-          </activation>
-          <properties>
-              <chop.coordinator.username>user</chop.coordinator.username>
-              <chop.coordinator.password>pass</chop.coordinator.password>
-          </properties>
-      </profile> 
-    </profiles>
-
-2) [stack.json](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/stack.json) : This file contains stack and cluster configuration that will be setup with **mvn chop:setup** command.
-
-3) [setup script](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/install_cassandra.sh) : This is the script which will run on each cluster instance during setup of stack and clusters. In my script I installed Cassandra and make some configurations for Cassandra.  
+4) [setup script](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/install_cassandra.sh) : This is the script which will run on each cluster instance during setup of stack and clusters. In my script I installed Cassandra and make some configurations for Cassandra.  
 
 Inside your setup script, you will need IP addresses of AWS instances. You can reach instance IPs and host name with the following environmental variables, since they are already injected as environmental variables. Here are the names of environment variables which you can use:   
 

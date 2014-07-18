@@ -23,17 +23,21 @@ The source code and more details about Chop can be found here : [Chop](https://g
 ####How to Setup Webapp Instance
 1. Things to be done on the AWS Instance
   1. Install JDK
-You should install your preferred JDK.
+
+    You should install your preferred JDK.
 
   2. Copy necessary certificate file
-After buid completes, a certificate file ("jssecacerts") is created under webapp module. You have to copy it under "$JAVA_HOME/jre/lib/security/", otherwise your webapp cannot make https REST calls to runner instances.
+  
+    After buid completes, a certificate file ("jssecacerts") is created under webapp module. You have to copy it under "$JAVA_HOME/jre/lib/security/", otherwise your webapp cannot make https REST calls to runner instances.
 
   3. Copy service script of chop 
-There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and set CHOP_HOME environment variable to **"/opt/chop"** and create **"webapp"** directory under CHOP_HOME
+  
+    There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and set CHOP_HOME environment variable to **"/opt/chop"** and create **"webapp"** directory under CHOP_HOME
 
 2. Things to be done locally
   1. Upload and start chop webapp 
-Please refer [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
+  
+    Please refer [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
     $ mvn wagon:upload-single
     $ mvn wagon:sshexec
 

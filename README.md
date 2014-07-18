@@ -9,14 +9,25 @@ The source code and more details about Chop can be found here : [Chop](https://g
 You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
   
     $ mvn clean install
-After buid completes, under webapp folder there will be jar file named **chop-webapp-2.0.0-SNAPSHOT-shaded.jar**. This is the jar that you will need to start chop coordinator. Create **/opt/chop/webapp** folder and copy jar file to there.
-
-There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and export CHOP_HOME environmental. Then invoke command below:
-
-    $ export CHOP_HOME=/opt/chop/
-    $ service chop-webapp start
     
-After you start chop webapp, you can check chop-webapp is working :
+####How to Start Webapp
+1. Things to be done on the AWS Instance
+  1. Install JDK
+You should install your preferred JDK.
+
+  2. Copy necessary certificate file
+After buid completes, a certificate file ("jssecacerts") is created under webapp module. You have to copy it under "$JAVA_HOME/jre/lib/security/", otherwise your webapp cannot make https REST calls to runner instances.
+
+  3. Copy service script of chop 
+There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and set CHOP_HOME environment variable to **"/opt/chop"** and create **"webapp"** directory under CHOP_HOME
+
+2. Things to be done locally
+  1. Upload and start chop webapp 
+Please refer Chop Configuration section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
+    $ mvn wagon:upload-single
+    $ mvn wagon:sshexec
+
+After you start chop webapp, you can check if chop-webapp is working :
 
     https://{chop.coordinator.url}:8443/VAADIN
 Default username and password is `user:pass`. Then you need create your own user account and enter AWS credentials and deploy pem file that you downloaded during starting aws intances. 

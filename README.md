@@ -18,7 +18,11 @@ The source code and more details about Chop can be found here : [Chop](https://g
 <a name="setup"/>
 ###How to Setup Chop
 
-
+[Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
+You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
+  
+    $ mvn clean install
+    
 <a name="webappsetup"/>
 ####How to Setup Webapp Instance
 1. Things to be done on the AWS Instance
@@ -37,19 +41,21 @@ The source code and more details about Chop can be found here : [Chop](https://g
 2. Things to be done locally
   1. Upload and start chop webapp 
   
-    Please refer [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
+    Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
     $ mvn wagon:upload-single
     $ mvn wagon:sshexec
 
 
 <a name="runnersetup"/>
 ####How to Setup Runner Instance
+1. Install JDK
 
-[Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
-You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
+    You should install your preferred JDK.
+
+2. Copy necessary certificate file
   
-    $ mvn clean install
- 
+    After buid completes, a certificate file ("jssecacerts") is created under webapp module. You have to copy it under "$JAVA_HOME/jre/lib/security/", otherwise your webapp cannot make https REST calls to runner instances.
+
 <a name="start"/>   
 ####How to Start Webapp
 

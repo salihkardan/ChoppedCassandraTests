@@ -68,8 +68,8 @@ Default username and password is `user:pass`. Then you need create your own user
 ### Chop Configuration
 There are some configurations that you need to do before start chopping. 
 
-1. You should provide the following information inside maven's settings.xml file.
-
+1. You should provide the following information inside maven's settings.xml file. 
+   Note: You need to set the same **username** and **password**  provided here on chop webapp. 
     <servers>
       <server>
           <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
@@ -99,8 +99,6 @@ There are some configurations that you need to do before start chopping.
           </properties>
       </profile> 
     </profiles>
-
-  Note: You need to set the same **username** and **password**  provided here on chop webapp. 
 
 2. [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml)
         

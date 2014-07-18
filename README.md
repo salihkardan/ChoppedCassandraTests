@@ -70,13 +70,13 @@ There are some configurations that you need to do before start chopping.
 
 1. You should provide the following information inside maven's settings.xml file. Keep in mind that you need to set the same **username** and **password**  provided below on chop webapp user interface.
 
-    <servers>
-      <server>
-          <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
-          <username>ubuntu</username>
-          <privateKey>/path/to/file.pem</privateKey>
-      </server>
-    <servers>
+      <servers>
+        <server>
+            <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
+            <username>ubuntu</username>
+            <privateKey>/path/to/file.pem</privateKey>
+        </server>
+      <servers>
 
     <profiles>
       <profile>

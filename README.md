@@ -36,7 +36,12 @@ You can clone or fork the project from Github. After you cloned code, you need t
 
   3. Copy service script of chop 
   
-    There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and set CHOP_HOME environment variable to **"/opt/chop"** and create **"webapp"** directory under CHOP_HOME
+    There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and set CHOP_HOME environment variable to **"/opt/chop"** and create **"webapp"** directory under CHOP_HOME. Do NOT forget to make this service script executable. You can use below commands for these changes.
+
+        $ echo "export CHOP_HOME=/opt/chop" >> /etc/profile.d/chop-home.sh
+        $ mkdir -p /opt/chop/webapp
+        $ source /etc/profile
+        $ chmod +x /etc/init.d/chop-webapp
 
 2. Things to be done locally
   1. Upload and start chop webapp 
@@ -135,7 +140,7 @@ There are some configurations that you need to do before start chopping.
 
 3. [stack.json](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/stack.json) : This file contains stack and cluster configuration that will be setup with **mvn chop:setup** command.
 
-4. [setup script](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/install_cassandra.sh) : This is the script which will run on each cluster instance during setup of stack and clusters. In my script I installed Cassandra and make some configurations for Cassandra.  
+4. [setup script](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/install_cassandra.sh) : This is the script which will run on each cluster instance during setup of stack and clusters. In my script I installed Cassandra and make some configurations for Cassandra. 
 
 Inside your setup script, you will need IP addresses of AWS instances. You can reach instance IPs and host name with the following environmental variables, since they are already injected as environmental variables. Here are the names of environment variables which you can use:   
 

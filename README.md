@@ -58,10 +58,6 @@ You can clone or fork the project from Github. After you cloned code, you need t
 
     You should install your preferred JDK.
 
-2. Copy necessary certificate file
-  
-    After buid completes, a certificate file ("jssecacerts") is created under webapp module. You have to copy it under "$JAVA_HOME/jre/lib/security/", otherwise your webapp cannot make https REST calls to runner instances.
-
 <a name="start"/>   
 ####How to Start Webapp
 

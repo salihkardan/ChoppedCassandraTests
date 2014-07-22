@@ -42,9 +42,9 @@ You can clone or fork the project from Github. After you cloned code, you need t
 
 
         # upload goal will upload jssecacerts, service script and required jar file to your chop coordinator. 
-        $ **mvn wagon:upload**  
+        $ mvn wagon:upload
         # sshexec goal will do requrired configurations on your chop coordinator and restart chop webapp.
-        $ **mvn wagon:sshexec**
+        $ mvn wagon:sshexec
 
 
 <a name="runnersetup"/>

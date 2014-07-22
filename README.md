@@ -59,7 +59,7 @@ Default username and password is `user:pass`. Then you need create your own user
 ### Chop Configuration
 There are some configurations that you need to do before start chopping. 
 
-1. You should provide the following information inside maven's settings.xml file. Keep in mind that you need to set the same **username** and **password**  provided below on chop webapp user interface.
+1. You should provide the following information inside maven's settings.xml file. Keep in mind that you need to set the same **username** and **password** provided below on chop webapp user interface. Also **chop.webapp.java.home** variable in maven settings.xml should be same as your $JAVA_HOME environment variable on your chop webapp instance.
     
     ~~~~~~
     <servers>
@@ -80,6 +80,7 @@ There are some configurations that you need to do before start chopping.
               <chop.coordinator.url>webapp.ip.address</chop.coordinator.url>
           </properties>
       </profile>
+      
       <profile>
           <id>chop-runner</id>
           <activation>
@@ -90,6 +91,16 @@ There are some configurations that you need to do before start chopping.
               <chop.coordinator.password>your.password</chop.coordinator.password>
           </properties>
       </profile> 
+      
+      <profile>
+          <id>java</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <chop.webapp.java.home>/usr/lib/jvm/java-1.7.0-openjdk-amd64</chop.webapp.java.home>
+          </properties>
+      </profile>
     </profiles>
     ~~~~~~
 

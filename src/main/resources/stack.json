@@ -8,6 +8,7 @@
       "type" : "t1.micro",
       "keyName" : "salih",
       "setupScripts" : [ "file://./install_cassandra.sh" ],
+      "runnerScripts" : [ "file://./runner.sh" ],
       "scriptEnvironment" : {
           "TEST_PARAM" : "Test Param Value"
       }

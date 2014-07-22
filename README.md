@@ -33,11 +33,11 @@ You can clone or fork the project from Github. After you cloned code, you need t
 2. Things to be done locally
   1. Upload and start chop webapp 
   
-    Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp.  
+    Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp and run the following commands to upload and start chop webapp.  
     
-        # upload goal will upload jssecacerts and service script to your chop coordinator. 
+        # upload goal will upload jssecacerts, service script and required jar file to your chop coordinator. 
         $ mvn wagon:upload  
-        # sshexec goal will requrired configurations on your chop coordinator and restart chop webapp.
+        # sshexec goal will do requrired configurations on your chop coordinator and restart chop webapp.
         $ mvn wagon:sshexec
 
 

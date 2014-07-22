@@ -19,10 +19,15 @@ The source code and more details about Chop can be found here : [Chop](https://g
 ###How to Setup Chop
 
 [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
-You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder. After build completes, jssecacerts certificate file will be created, and service script is already under chop directory. 
+You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder. 
   
     $ mvn clean install
     
+**Note:** After build completes, jssecacerts certificate file will be created and chop service script is already under chop directory which you can use it like below. To deploy certificate file and service script you can use maven chop [wagon](#wagon) plugin.
+
+    $ service chop-webapp start|stop|status|kill 
+        
+        
 <a name="webappsetup"/>
 ####How to Setup Webapp Instance
 1. Things to be done on the AWS Instance
@@ -34,7 +39,9 @@ You can clone or fork the project from Github. After you cloned code, you need t
   1. Upload and start chop webapp 
   
     Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp and run the following commands to upload and start chop webapp.  
-    
+
+<a name="wagon"/>
+
         # upload goal will upload jssecacerts, service script and required jar file to your chop coordinator. 
         $ mvn wagon:upload  
         # sshexec goal will do requrired configurations on your chop coordinator and restart chop webapp.

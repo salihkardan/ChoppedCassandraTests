@@ -1,31 +1,110 @@
+##### Table of Contents  
+- [What is Chop?](#whatis)
+- [How to Setup Chop](#setup)  
+  - [How to Setup Webapp Instance](#webappsetup)
+  - [How to Setup Runner Instance](#runnersetup)
+- [How to Start Webapp](#start)  
+- [Chop Configuration](#config)  
+- [Available Chop Commands](#commands)  
+- [How will you reach the cluster information defined in stack.json file?](#stack.json)  
+- [Go](#go)
+
+<a name="whatis"/>
 ### What is Chop?
 Judo Chop is a simple distributed performance testing framework. Just annotate your JUnit tests with **TimeChop** or **IterationChop** annotations telling Judo Chop how to chop it up. Judo Chop uses your own project's JUnit Test Cases as drivers to bombard your application, service, or server.
 
 The source code and more details about Chop can be found here : [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o/chop).  
 
-###Setup
+<a name="setup"/>
+###How to Setup Chop
 
 [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
-You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
+You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder. After build completes, jssecacerts certificate file will be created, and service script is already under chop directory. 
   
     $ mvn clean install
-After buid completes, under webapp folder there will be jar file named **chop-webapp-2.0.0-SNAPSHOT-shaded.jar**. This is the jar that you will need to start chop coordinator. Create **/opt/chop/webapp** folder and copy jar file to there.
-
-There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and export CHOP_HOME environmental. Then invoke command below:
-
-    $ export CHOP_HOME=/opt/chop/
-    $ service chop-webapp start
     
-After you start chop webapp, you can check chop-webapp is working :
+<a name="webappsetup"/>
+####How to Setup Webapp Instance
+1. Things to be done on the AWS Instance
+  1. Install JDK
+
+    You should install your preferred JDK.
+
+2. Things to be done locally
+  1. Upload and start chop webapp 
+  
+    Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp and run the following commands to upload and start chop webapp.  
+    
+        # upload goal will upload jssecacerts, service script and required jar file to your chop coordinator. 
+        $ mvn wagon:upload  
+        # sshexec goal will do requrired configurations on your chop coordinator and restart chop webapp.
+        $ mvn wagon:sshexec
+
+
+<a name="runnersetup"/>
+####How to Setup Runner Instance
+1. Install JDK
+
+    You should install your preferred JDK.
+
+<a name="start"/>   
+####How to Start Webapp
+
+If you have followed [setup](#webappsetup) section, then your webapp should be running and you can check it via following URL:
 
     https://{chop.coordinator.url}:8443/VAADIN
 Default username and password is `user:pass`. Then you need create your own user account and enter AWS credentials and deploy pem file that you downloaded during starting aws intances. 
 
-
+<a name="config"/>
 ### Chop Configuration
 There are some configurations that you need to do before start chopping. 
 
-1) [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml) : You need to configure **username**, **password** and **chop.coordinator.url** parameters which will be same in the coordinator web interface. 
+1. You should provide the following information inside maven's settings.xml file. Keep in mind that you need to set the same **username** and **password** provided below on chop webapp user interface. Also **chop.webapp.java.home** variable in maven settings.xml should be same as your $JAVA_HOME environment variable on your chop webapp instance.
+    
+    ~~~~~~
+    <servers>
+        <server>
+            <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
+            <username>ubuntu</username>
+            <privateKey>/path/to/file.pem</privateKey>
+        </server>
+    <servers>
+
+    <profiles>
+      <profile>
+          <id>deploy-chop-webapp</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <chop.coordinator.url>webapp.ip.address</chop.coordinator.url>
+          </properties>
+      </profile>
+      
+      <profile>
+          <id>chop-runner</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <chop.coordinator.username>your.user</chop.coordinator.username>
+              <chop.coordinator.password>your.password</chop.coordinator.password>
+          </properties>
+      </profile> 
+      
+      <profile>
+          <id>java</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <chop.webapp.java.home>/usr/lib/jvm/java-1.7.0-openjdk-amd64</chop.webapp.java.home>
+          </properties>
+      </profile>
+    </profiles>
+    ~~~~~~
+
+2. [pom.xml](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/pom.xml)
         
         <plugins>
             <plugin>
@@ -55,41 +134,9 @@ There are some configurations that you need to do before start chopping.
             </plugin>
         </plugins>
 
-Since you will not want to commit your user specific information such as username and password, you can put those information into settings.xml file of maven.
+3. [stack.json](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/stack.json) : This file contains stack and cluster configuration that will be setup with **mvn chop:setup** command.
 
-    <servers>
-      <server>
-          <id>ec2-coordinator-instance</id> <!-- This field should remain the same! -->
-          <username>ubuntu</username>
-          <privateKey>/home/salih/salih.pem</privateKey>
-      </server>
-    <servers>
-
-    <profiles>
-      <profile>
-          <id>deploy-chop-webapp</id>
-          <activation>
-              <activeByDefault>true</activeByDefault>
-          </activation>
-          <properties>
-              <chop.coordinator.url>54.85.138.123</chop.coordinator.url>
-          </properties>
-      </profile>
-      <profile>
-          <id>chop-runner</id>
-          <activation>
-              <activeByDefault>true</activeByDefault>
-          </activation>
-          <properties>
-              <chop.coordinator.username>user</chop.coordinator.username>
-              <chop.coordinator.password>pass</chop.coordinator.password>
-          </properties>
-      </profile> 
-    </profiles>
-
-2) [stack.json](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/stack.json) : This file contains stack and cluster configuration that will be setup with **mvn chop:setup** command.
-
-3) [setup script](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/install_cassandra.sh) : This is the script which will run on each cluster instance during setup of stack and clusters. In my script I installed Cassandra and make some configurations for Cassandra.  
+4. [setup script](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/install_cassandra.sh) : This is the script which will run on each cluster instance during setup of stack and clusters. In my script I installed Cassandra and make some configurations for Cassandra. 
 
 Inside your setup script, you will need IP addresses of AWS instances. You can reach instance IPs and host name with the following environmental variables, since they are already injected as environmental variables. Here are the names of environment variables which you can use:   
 
@@ -100,6 +147,7 @@ Inside your setup script, you will need IP addresses of AWS instances. You can r
     {cluster-name}_PUBLIC_ADDRS
     {cluster-name}_PUBLIC_HOSTS 
 
+<a name="commands"/>
 ### Available Chop Commands
 Chop has a maven plugin which you can use while setting up clusters, starting tests etc.
 Here is a list of available commands: 
@@ -114,7 +162,7 @@ Here is a list of available commands:
     mvn chop:destroy --> destroy stack and clusters which are set up on AWS. 
     mvn chop:help    --> help
 
-
+<a name="stack.json"/>
 ### How will you reach the cluster information defined in stack.json file ?
 
 Cluster information will injected at runtime, so you can reach all properties (i.e. cluster name, number of nodes in cluster, instance IPs ) of your cluster while writing your tests.  All you need is to use `@ChopCluster( name = "" )` annotation. 
@@ -122,5 +170,6 @@ Cluster information will injected at runtime, so you can reach all properties (i
     @ChopCluster( name = "Cassandra" ) // this name should be same with the name you defined in stack.json file.
     public static ICoordinatedCluster casCluster;
 
+<a name="go"/>
 ### Go
-You need to use maven chop commands in order. First you need to create runner.jar file with **mvn chop:runner** command, then you need to deploy runner.jar file with **mvn chop:deploy** command. After deployment, invoke **mvn chop:setup** command to setup stack and clusters defined in stack.json file. Finally to start tests call **mvn chop:start** command. 
+You need to use maven chop commands in order. First you need to create runner.jar file with **mvn chop:runner** command, then you need to invoke **mvn chop:setup** command to setup stack and clusters defined in stack.json file. Finally to start tests call **mvn chop:start** command. After your tests are finished you can destroy the stack with **mvn chop:destroy** command.

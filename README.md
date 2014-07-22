@@ -19,7 +19,7 @@ The source code and more details about Chop can be found here : [Chop](https://g
 ###How to Setup Chop
 
 [Chop](https://github.com/usergrid/usergrid/tree/two-dot-o) is part of Apache Usergrid project and its development still in progress on Github.
-You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder.
+You can clone or fork the project from Github. After you cloned code, you need to build chop with the command below from parent directory of chop folder. After build completes, jssecacerts certificate file will be created, and service script is already under chop directory. 
   
     $ mvn clean install
     
@@ -30,25 +30,14 @@ You can clone or fork the project from Github. After you cloned code, you need t
 
     You should install your preferred JDK.
 
-  2. Copy necessary certificate file
-  
-    After buid completes, a certificate file ("jssecacerts") is created under webapp module. You have to copy it under "$JAVA_HOME/jre/lib/security/", otherwise your webapp cannot make https REST calls to runner instances.
-
-  3. Copy service script of chop 
-  
-    There is simple service script that can be found [here](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/chop-webapp) to run start, stop, restart and status service commands. Copy that script under /etc/init.d/ folder and set CHOP_HOME environment variable to **"/opt/chop"** and create **"webapp"** directory under CHOP_HOME. Do NOT forget to make this service script executable. You can use below commands for these changes.
-
-        $ echo "export CHOP_HOME=/opt/chop" >> /etc/profile.d/chop-home.sh
-        $ mkdir -p /opt/chop/webapp
-        $ source /etc/profile
-        $ chmod +x /etc/init.d/chop-webapp
-
 2. Things to be done locally
   1. Upload and start chop webapp 
   
-    Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp. 
+    Please refer first item of [configuration](#config) section below. Then switch your current directory to webapp. Then run the following commands to upload and start chop webapp.  
     
-        $ mvn wagon:upload-single
+        # upload goal will upload jssecacerts and service script to your chop coordinator. 
+        $ mvn wagon:upload  
+        # sshexec goal will requrired configurations on your chop coordinator and restart chop webapp.
         $ mvn wagon:sshexec
 
 

@@ -46,6 +46,8 @@ You can clone or fork the project from Github. After you cloned code, you need t
 1. Install JDK
 
     You should install your preferred JDK.
+    
+    **Note:** There is a json property in [stack.json](https://github.com/salihkardan/ChoppedCassandraTests/blob/master/src/main/resources/stack.json) named "runnerScripts" which you may use to make configuration or installation on your runner instances. For instance if you are going to use an AMI in which Java is already installed, then you may use these runner script for another purpose. If java is not installed in your custom AMI then you can install java with these runner scripts. 
 
 <a name="start"/>   
 ####How to Start Webapp

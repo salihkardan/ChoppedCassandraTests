@@ -183,3 +183,4 @@ Cluster information will injected at runtime, so you can reach all properties (i
 You need to use maven chop commands in order. First you need to create runner.jar file with **mvn chop:runner** command, then you need to invoke **mvn chop:setup** command to setup stack and clusters defined in stack.json file. Finally to start tests call **mvn chop:start** command. After your tests are finished you can destroy the stack with **mvn chop:destroy** command.
 
 test
+test2
